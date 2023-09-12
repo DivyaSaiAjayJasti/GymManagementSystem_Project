@@ -1,0 +1,50 @@
+Find admin users:
+db.admin.find_one({"username": username})
+
+Find gym users:
+db.gym.find_one({"g_username": username})
+
+Find gym members:
+db.member.find_one({"m_username": username})
+
+Find gym Instructors:
+db.instructor.find_one({"i_username": username})
+
+Find Insrtructor workout plan:
+db.workoutplan.find_one({"w_planname":plan_name})
+
+Gym member applies for workout plan:
+db.applied.insert_one(w_plan_applied)
+
+Getting number of gym members register for a particular workout plan:
+db.workoutplan.find_one({"_id": ObjectId(w_id), "members":session['user_id']})
+
+Updating new gym members applying for the workoutplan:
+db.workoutplan.update_one({"_id":ObjectId(w_id)}, {"$push": {"members":session['user_id']}})
+
+Getting the number of gym members applied for the workout plan:
+db.workoutplan.aggregate(pipeline)
+
+Updating the gym information:
+db.gym.update_one({"_id":ObjectId("64aa160d7391e18dbc7f76e8")},
+                  {"$set":gym})
+
+Getting all the applied plans:
+db.applied.find({})
+
+Updating the instructor reset password details:
+db.instructor.update_one({"i_email": i_email},
+			{"$set": {"i_password": new_password,"is_verified":True}})
+
+Updating workout plan details:
+db.workoutplan.update_one({"w_planname":quantities['w_planname']},
+                                     {"$set":quantities})
+
+Getting the member count:
+member_count = db.member.count_documents({})
+
+Getting the Instructor count:
+instructor_count = db.instructor.count_documents({})
+
+Getting the workoutplan count:
+workoutplan_count = db.workoutplan.count_documents({})
